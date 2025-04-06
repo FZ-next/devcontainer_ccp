@@ -34,6 +34,7 @@
         "python.formatting.provider": "black",
         "python.formatting.blackPath": "/workspace/.venv/bin/black",
         "python.linting.mypyPath": "/workspace/.venv/bin/mypy",
+        "mypy.dmypyExecutable": "/workspace/.venv/bin/dmypy",
         "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
         "terminal.integrated.defaultProfile.linux": "zsh",
         "terminal.integrated.profiles.linux": {

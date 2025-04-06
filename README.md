@@ -29,6 +29,8 @@ A pre-configured development environment using VS Code devcontainers, Poetry, an
    - Install pre-commit hooks
 6. Once inside the container, you can start developing immediately!
 
+> **Note**: For detailed information about the devcontainer configuration, see [.devcontainer/README.md](.devcontainer/README.md)
+
 ## Usage
 
 ```bash

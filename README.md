@@ -80,6 +80,14 @@ tests/                # Test directory
 ```
 
 When using this template:
+
+### Option 1: Use the automated renaming script
+```bash
+# Replace "my_awesome_project" with your desired project name
+python .devcontainer/rename_project.py my_awesome_project
+```
+
+### Option 2: Manually rename the project
 1. Rename the `python_project` directory to your project name
 2. Update the package name in `pyproject.toml`
 3. Adjust imports in test files to match your new package name

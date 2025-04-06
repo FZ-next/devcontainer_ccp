@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "python_project"
+version = "0.1.0"
+description = "Python project template with Poetry and Claude Code support"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [{include = "python_project", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.2"
+black = "^23.7.0"
+mypy = "^1.5.1"
+pre-commit = "^3.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+target-version = ["py311"]
+
+[tool.mypy]
+python_version = "3.11"
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+strict_optional = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_ignores = true
+
+[tool.ruff]
+line-length = 79
+target-version = "py311"
+select = ["E", "F", "B", "I", "N", "UP", "PL", "C90", "PD"]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.isort]
+known-first-party = ["python_project"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"

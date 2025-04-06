@@ -1,0 +1,64 @@
+{
+  "name": "Python Claude Devcontainer",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": {
+      "TZ": "${localEnv:TZ:America/Los_Angeles}"
+    }
+  },
+  "runArgs": ["--cap-add=NET_ADMIN", "--cap-add=NET_RAW"],
+  "forwardPorts": [8000, 8501],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "eamodio.gitlens",
+        "magicstack.MagicPython",
+        "njpwerner.autodocstring",
+        "ms-python.black-formatter",
+        "matangover.mypy",
+        "charliermarsh.ruff",
+        "tamasfe.even-better-toml",
+        "streetsidesoftware.code-spell-checker"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+        },
+        "python.linting.enabled": true,
+        "python.linting.mypyEnabled": true,
+        "python.formatting.provider": "black",
+        "python.formatting.blackPath": "/workspace/.venv/bin/black",
+        "python.linting.mypyPath": "/workspace/.venv/bin/mypy",
+        "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+          },
+          "zsh": {
+            "path": "zsh"
+          }
+        }
+      }
+    }
+  },
+  "remoteUser": "node",
+  "mounts": [
+    "source=claude-code-bashhistory,target=/commandhistory,type=volume",
+    "source=claude-code-config,target=/home/node/.claude,type=volume"
+  ],
+  "remoteEnv": {
+    "NODE_OPTIONS": "--max-old-space-size=4096",
+    "CLAUDE_CONFIG_DIR": "/home/node/.claude",
+    "POWERLEVEL9K_DISABLE_GITSTATUS": "true"
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh || echo 'Warning: Firewall setup failed but continuing anyway' && sudo /usr/local/bin/init-poetry.sh && sudo /usr/local/bin/init-git.sh && sudo /usr/local/bin/init-precommit.sh"
+}

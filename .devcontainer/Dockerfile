@@ -33,7 +33,7 @@ RUN apt update && apt install -y less \
   python3.11 \
   python3.11-venv \
   python3.11-dev \
-  python3-pip \
+  python3-pip
 
 # Set python3.12 as default
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1 && \
@@ -116,4 +116,3 @@ WORKDIR /workspace
 
 # Copy pyproject.toml and poetry.lock separately for caching
 COPY pyproject.toml poetry.lock* ./
-

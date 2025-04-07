@@ -1,5 +1,7 @@
 {
-  "name": "Python Claude Devcontainer",
+  "name": "python-claude-devcontainer",
+  "containerName": "python-claude-devcontainer",
+  "image": "python-claude-devcontainer",
   "build": {
     "dockerfile": "Dockerfile",
     "context": "..",

@@ -1,5 +1,4 @@
 """Tests for the example module."""
-import pytest
 
 from python_project.example import ExampleClass, hello
 

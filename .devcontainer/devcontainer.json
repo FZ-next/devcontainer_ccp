@@ -1,17 +1,21 @@
 {
-  "name": "python-claude-devcontainer",
-  "containerName": "python-claude-devcontainer",
-  "image": "python-claude-devcontainer",
+  "name": "${localWorkspaceFolderBasename}",
+  "image": "${localWorkspaceFolderBasename}",
   "build": {
     "dockerfile": "Dockerfile",
     "context": "..",
     "args": {
+      "IMAGE_NAME": "${localWorkspaceFolderBasename}",
+      "PROJECT_NAME": "${localWorkspaceFolderBasename}",
       "TZ": "${localEnv:TZ:America/Los_Angeles}"
     }
   },
   "runArgs": ["--cap-add=NET_ADMIN", "--cap-add=NET_RAW"],
   "forwardPorts": [8000, 8501],
   "customizations": {
+    "docker": {
+      "containerName": "${localWorkspaceFolderBasename}"
+    },
     "vscode": {
       "extensions": [
         "ms-python.python",
@@ -63,5 +67,5 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
-  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh || echo 'Warning: Firewall setup failed but continuing anyway' && sudo /usr/local/bin/init-poetry.sh && sudo /usr/local/bin/init-git.sh && sudo /usr/local/bin/init-precommit.sh"
+  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh || echo 'Warning: Firewall setup failed but continuing anyway' && sudo /workspace/.devcontainer/init-rename-project.sh && sudo /usr/local/bin/init-poetry.sh && sudo /usr/local/bin/init-git.sh && sudo /usr/local/bin/init-precommit.sh"
 }

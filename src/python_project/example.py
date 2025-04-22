@@ -1,8 +1,7 @@
 """Example module to demonstrate project structure."""
-from typing import List, Optional
 
 
-def hello(name: Optional[str] = None) -> str:
+def hello(name: str | None = None) -> str:
     """Return a greeting message.
 
     Args:
@@ -19,7 +18,7 @@ def hello(name: Optional[str] = None) -> str:
 class ExampleClass:
     """Example class to demonstrate project structure."""
 
-    def __init__(self, items: Optional[List[str]] = None) -> None:
+    def __init__(self, items: list[str] | None = None) -> None:
         """Initialize the example class.
 
         Args:
@@ -35,7 +34,7 @@ class ExampleClass:
         """
         self.items.append(item)
 
-    def get_items(self) -> List[str]:
+    def get_items(self) -> list[str]:
         """Get all items.
 
         Returns:

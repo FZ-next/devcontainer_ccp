@@ -32,7 +32,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   1. Standard library imports
   2. Third-party imports
   3. Local application imports
-- **Naming**: 
+- **Naming**:
   - `snake_case` for variables, functions, and modules
   - `PascalCase` for classes
   - `UPPER_CASE` for constants

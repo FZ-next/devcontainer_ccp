@@ -2,7 +2,9 @@
 
 A pre-configured development environment using VS Code devcontainers, Poetry, and Claude Code. This template provides everything you need to start a new Python project with modern development practices built-in.
 
-> **Note**: This container automatically sets up Poetry and installs dependencies when you open it in VS Code with the Dev Containers extension.
+> **Note**: This container automatically sets up Poetry and installs dependencies when you open it in VS Code with the Dev Containers extension. It initialize git and pre-commit
+
+For more information on the devcontainer see the DEVContainer_README.md file.
 
 ## Features
 
@@ -16,6 +18,7 @@ A pre-configured development environment using VS Code devcontainers, Poetry, an
 - Git configuration with sensible defaults
 - Claude Code integration
 - Comprehensive VS Code extensions
+- Project and by that devcontainer image name is equal to the repository name
 
 ## Getting Started
 
@@ -34,9 +37,6 @@ A pre-configured development environment using VS Code devcontainers, Poetry, an
 ## Usage
 
 ```bash
-# Install dependencies
-poetry install
-
 # Run tests
 poetry run pytest
 
@@ -80,18 +80,3 @@ tests/                # Test directory
 ├── __init__.py       # Test initialization
 └── test_example.py   # Example tests using pytest
 ```
-
-When using this template:
-
-### Option 1: Use the automated renaming script
-```bash
-# Replace "my_awesome_project" with your desired project name
-python .devcontainer/rename_project.py my_awesome_project
-```
-
-### Option 2: Manually rename the project
-1. Rename the `workspace` directory to your project name
-2. Update the package name in `pyproject.toml`
-3. Adjust imports in test files to match your new package name
-
-The devcontainer will automatically set up your environment with all tools configured in pyproject.toml.

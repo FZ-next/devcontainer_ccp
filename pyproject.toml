@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "python_project"
+name = "workspace"
 version = "0.1.0"
 description = "Python project template with Poetry and Claude Code support"
 authors = ["Your Name <your.email@example.com>"]
 readme = "README.md"
-packages = [{include = "python_project", from = "src"}]
+packages = [{include = "workspace", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -44,7 +44,7 @@ fixable = ["ALL"]
 unfixable = []
 
 [tool.ruff.isort]
-known-first-party = ["python_project"]
+known-first-party = ["workspace"]
 section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
 
 [tool.pytest.ini_options]

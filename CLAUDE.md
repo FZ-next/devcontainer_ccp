@@ -19,7 +19,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Structure
 - Source code is in the `src/` directory
-- Main package is in `src/python_project/` (rename when starting a project)
+- Main package is in `src/workspace/` (rename when starting a project)
 - Tests are in `tests/` directory matching the structure of the source
 
 ## Code Style Guidelines

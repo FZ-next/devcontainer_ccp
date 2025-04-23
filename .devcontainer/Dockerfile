@@ -25,6 +25,7 @@ RUN apt update && apt install -y less \
   curl \
   wget \
   bzip2 \
+  dos2unix \
   libglib2.0-0 \
   libxext6 \
   libsm6 \
@@ -95,12 +96,10 @@ COPY .devcontainer/init-firewall.sh /usr/local/bin/
 COPY .devcontainer/init-poetry.sh /usr/local/bin/
 COPY .devcontainer/init-git.sh /usr/local/bin/
 COPY .devcontainer/init-precommit.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/init-firewall.sh /usr/local/bin/init-poetry.sh /usr/local/bin/init-git.sh /usr/local/bin/init-precommit.sh && \
-  echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh, /usr/local/bin/init-poetry.sh, /usr/local/bin/init-git.sh, /usr/local/bin/init-precommit.sh, /bin/bash /workspace/.devcontainer/init-poetry.sh" > /etc/sudoers.d/node-firewall && \
-  chmod 0440 /etc/sudoers.d/node-firewall && \
-  # Add write permissions to common directories for node user
-  mkdir -p /workspace/uploads && \
-  chown -R node:node /workspace/uploads
+COPY .devcontainer/init-rename-project.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/init-firewall.sh /usr/local/bin/init-poetry.sh /usr/local/bin/init-git.sh /usr/local/bin/init-precommit.sh /usr/local/bin/init-rename-project.sh && \
+  echo "node ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/node && \
+  chmod 0440 /etc/sudoers.d/node
 
 # Install Poetry properly
 USER node

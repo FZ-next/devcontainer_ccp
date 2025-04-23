@@ -99,10 +99,10 @@ for domain in \
     "vercel-dns.com" \
     "*.vercel-dns.com"; do
     echo "Resolving $domain..."
-    
+
     # Initialize valid_ips variable for all cases
     valid_ips=""
-    
+
     # For wildcard domains, handle specially
     if [[ "$domain" == *\** ]]; then
         echo "Wildcard domain detected: $domain - adding broad IP ranges to ensure coverage"
@@ -118,19 +118,19 @@ for domain in \
             # Convert wildcard to base domain for resolution
             base_domain=$(echo "$domain" | sed -e 's/\*\.//' -e 's/^\*//')
             echo "Trying to resolve base domain $base_domain for wildcard $domain"
-            
+
             # Try multiple DNS servers
             for dns_server in "" "@8.8.8.8" "@1.1.1.1"; do
                 dig_cmd="dig +short $dns_server A $base_domain"
                 echo "Running: $dig_cmd"
                 resolved_ips=$(eval "$dig_cmd" | grep -E '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$' || true)
-                
+
                 if [ -n "$resolved_ips" ]; then
                     valid_ips="$resolved_ips"
                     break
                 fi
             done
-            
+
             # If we still don't have IPs, try some common IP blocks for CDNs
             if [ -z "$valid_ips" ]; then
                 echo "Failed to resolve base domain, adding common CDN IP ranges"
@@ -141,7 +141,7 @@ for domain in \
                 done
             fi
         fi
-        
+
         # Continue with normal resolution too in case we have a specific subdomain
         domain_no_wildcard=$(echo "$domain" | sed -e 's/\*\.//' -e 's/^\*//')
         echo "Also trying to resolve non-wildcard version: $domain_no_wildcard"
@@ -159,14 +159,14 @@ for domain in \
                 fi
             done
         fi
-        
+
         # Also try direct A record lookup
         direct_ips=$(dig +short A "$domain" | grep -E '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$' || true)
         if [ -n "$direct_ips" ]; then
             valid_ips="${valid_ips}${valid_ips:+$'\n'}${direct_ips}"
         fi
     fi
-    
+
     # For non-wildcard domains or after wildcard processing, check if we have valid IPs
     if [ -z "$valid_ips" ]; then
         echo "WARNING: No valid IPs found for $domain, trying alternative DNS servers..."
@@ -184,19 +184,19 @@ for domain in \
                     fi
                 done
             fi
-            
+
             # Also try direct A record lookup
             direct_ips=$(dig +short $dns_server A "$domain" | grep -E '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$' || true)
             if [ -n "$direct_ips" ]; then
                 valid_ips="${valid_ips}${valid_ips:+$'\n'}${direct_ips}"
             fi
-            
+
             if [ -n "$valid_ips" ]; then
                 echo "Successfully resolved $domain using $dns_server"
                 break
             fi
         done
-        
+
         if [ -z "$valid_ips" ]; then
             echo "WARNING: Failed to resolve $domain with all DNS servers - adding fallback CDN ranges"
             # Add common CDN ranges as fallback
@@ -207,7 +207,7 @@ for domain in \
             continue
         fi
     fi
-    
+
     # Now process the validated IPs one by one
     echo "$valid_ips" | while read -r ip; do
         if [ -n "$ip" ]; then

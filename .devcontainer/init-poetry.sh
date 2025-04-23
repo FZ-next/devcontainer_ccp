@@ -63,6 +63,6 @@ fi
 echo "Updating poetry lock file..."
 cd /workspace && poetry lock
 
-# Install dependencies 
+# Install dependencies
 echo "Installing dependencies..."
 cd /workspace && poetry install --no-root

@@ -71,7 +71,7 @@ The project includes a sample package structure to help you get started:
 
 ```
 src/                  # Source code directory
-├── python_project/   # Main package (rename to your project name)
+├── workspace/   # Main package (rename to your project name)
 │   ├── __init__.py   # Package initialization
 │   └── example.py    # Example module with typed functions and classes
 └── __init__.py       # Source directory initialization
@@ -90,7 +90,7 @@ python .devcontainer/rename_project.py my_awesome_project
 ```
 
 ### Option 2: Manually rename the project
-1. Rename the `python_project` directory to your project name
+1. Rename the `workspace` directory to your project name
 2. Update the package name in `pyproject.toml`
 3. Adjust imports in test files to match your new package name
 

@@ -1,6 +1,6 @@
 """Tests for the example module."""
 
-from python_project.example import ExampleClass, hello
+from workspace.example import ExampleClass, hello
 
 
 def test_hello_with_name() -> None:

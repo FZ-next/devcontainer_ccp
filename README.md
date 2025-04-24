@@ -71,7 +71,7 @@ The project includes a sample package structure to help you get started:
 
 ```
 src/                  # Source code directory
-├── workspace/   # Main package (rename to your project name)
+├── python_project/   # Main package (rename to your project name)
 │   ├── __init__.py   # Package initialization
 │   └── example.py    # Example module with typed functions and classes
 └── __init__.py       # Source directory initialization

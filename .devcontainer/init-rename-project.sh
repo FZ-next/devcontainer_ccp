@@ -55,7 +55,7 @@ get_repo_name() {
 
 PROJECT_NAME=$(get_repo_name)
 OLD_PROJECT_NAME="python_project"
-OLD_PACKAGE_NAME="workspace"
+OLD_PACKAGE_NAME="python_project"
 
 # Skip if the project name is either of the defaults
 if [ "$PROJECT_NAME" = "$OLD_PROJECT_NAME" ] || [ "$PROJECT_NAME" = "$OLD_PACKAGE_NAME" ]; then

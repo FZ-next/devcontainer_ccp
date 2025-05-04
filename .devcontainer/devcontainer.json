@@ -42,6 +42,13 @@
         "python.linting.mypyPath": "/workspace/.venv/bin/mypy",
         "mypy.dmypyExecutable": "/workspace/.venv/bin/dmypy",
         "python.defaultInterpreterPath": "/workspace/.venv/bin/python",
+        "python.terminal.activateEnvInCurrentTerminal": true,
+        "python.experiments.enabled": false,
+        "python.analysis.autoSearchPaths": true,
+        "python.pythonPath": "/workspace/.venv/bin/python",
+        "python.interpreter.infoVisibility": "always",
+        "python.terminal.activateEnvironment": true,
+        "python.venvPath": "/workspace/.venv",
         "terminal.integrated.defaultProfile.linux": "zsh",
         "terminal.integrated.profiles.linux": {
           "bash": {
@@ -63,7 +70,9 @@
   "remoteEnv": {
     "NODE_OPTIONS": "--max-old-space-size=4096",
     "CLAUDE_CONFIG_DIR": "/home/node/.claude",
-    "POWERLEVEL9K_DISABLE_GITSTATUS": "true"
+    "POWERLEVEL9K_DISABLE_GITSTATUS": "true",
+    "PYTHONPATH": "/workspace",
+    "PATH": "/workspace/.venv/bin:${containerEnv:PATH}"
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",

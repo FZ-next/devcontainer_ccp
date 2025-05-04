@@ -67,5 +67,6 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
-  "postCreateCommand": "find /workspace/.devcontainer -name \"*.sh\" -type f | xargs sudo dos2unix && find /usr/local/bin -name \"init-*\" -type f | xargs sudo dos2unix && sudo /usr/local/bin/init-firewall.sh || echo 'Warning: Firewall setup failed but continuing anyway' && sudo /usr/local/bin/init-git.sh && sudo /usr/local/bin/init-rename-project.sh && sudo /usr/local/bin/init-poetry.sh && sudo /usr/local/bin/init-precommit.sh"
+  "updateContentCommand": "sudo chown -R node:node /workspace && sudo chmod -R 775 /workspace",
+  "postCreateCommand": "find /workspace/.devcontainer -name \"*.sh\" -type f | xargs sudo dos2unix && find /usr/local/bin -name \"init-*\" -type f | xargs sudo dos2unix && sudo /usr/local/bin/init-firewall.sh || echo 'Warning: Firewall setup failed but continuing anyway' && /usr/local/bin/init-git.sh && /usr/local/bin/init-rename-project.sh && /usr/local/bin/init-poetry.sh && /usr/local/bin/init-precommit.sh"
 }
